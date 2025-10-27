@@ -1,0 +1,13 @@
+[[extensions]]
+name = "Checkout Validation"
+handle = "checkout-checkout-validation"
+type = "function"
+description = "Validates checkout for free gifts."
+
+[[extensions.targeting]]
+target = "checkout.validations.generate.run"
+input_query = "src/checkout_validations_generate_run.graphql"
+export = "checkout_validations_generate_run"
+
+[build]
+command = "cargo build --target=wasm32-wasip1 --release && mkdir -p dist && cp target/wasm32-wasip1/release/checkout-checkout-validation.wasm dist/index.wasm"
