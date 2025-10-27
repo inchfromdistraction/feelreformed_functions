@@ -1,0 +1,13 @@
+query Input {
+  checkout {
+    lines {
+      quantity
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          id
+        }
+      }
+    }
+  }
+}

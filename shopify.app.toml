@@ -1,0 +1,23 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "a1a060249d6e7f3b7a7a8d186ebb6dcf"
+name = "giftappremoved"
+application_url = "https://renderfeelreformed-1.onrender.com/"
+embedded = false
+
+[webhooks]
+api_version = "2025-10"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_customers,read_orders"
+optional_scopes = [ ]
+use_legacy_install_flow = false
+
+[auth]
+redirect_urls = [ "https://renderfeelreformed-1.onrender.com/auth/callback" ]
+
+[app_proxy]
+url = "https://renderfeelreformed-1.onrender.com/apps/validate-customer"
+subpath = "validate-customer"
+prefix = "apps"
