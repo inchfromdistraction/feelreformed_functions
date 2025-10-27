@@ -1,12 +1,11 @@
-use crate::schema;
-use crate::schema::checkout_validations_generate_run::input::checkout::lines::Merchandise;
 use shopify_function::prelude::*;
 use shopify_function::Result;
+use crate::checkout_validations_generate_run::input::checkout::lines::Merchandise;
 
 #[shopify_function]
 fn checkout_validations_generate_run(
-    input: schema::checkout_validations_generate_run::Input,
-) -> Result<schema::CheckoutValidationsGenerateRunResult> {
+    input: checkout_validations_generate_run::Input,
+) -> Result<checkout_validations_generate_run::Result> {
     let mut operations = Vec::new();
     let mut errors = Vec::new();
 
@@ -31,14 +30,14 @@ fn checkout_validations_generate_run(
         });
 
     if has_gift {
-        errors.push(schema::ValidationError {
+        errors.push(checkout_validations_generate_run::ValidationError {
             message: "A free gift was removed from your cart because your account is not eligible at this time.".to_owned(),
             target: "$.checkout".to_owned(),
         });
     }
 
-    let operation = schema::ValidationAddOperation { errors };
-    operations.push(schema::Operation::ValidationAdd(operation));
+    let operation = checkout_validations_generate_run::ValidationAddOperation { errors };
+    operations.push(checkout_validations_generate_run::Operation::ValidationAdd(operation));
 
-    Ok(schema::CheckoutValidationsGenerateRunResult { operations })
+    Ok(checkout_validations_generate_run::Result { operations })
 }
